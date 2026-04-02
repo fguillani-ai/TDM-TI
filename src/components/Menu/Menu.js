@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function Menu(props){
     return(
-            <li>{props.elemento}</li>
+        <li><Link to={props.ruta}>{props.elemento}</Link></li>
     )
 }
-export default Menu
+export default Menu;

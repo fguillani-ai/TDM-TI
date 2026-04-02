@@ -1,7 +1,7 @@
 function Footer() {
    return(
         <footer>
-            <p>Copyright © Dashboard 2022</p>
+            <p>Federica Guillani - Luca Carpanetto</p>
         </footer>
    ) 
 }

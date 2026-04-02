@@ -1,17 +1,18 @@
 import Menu from "../Menu/Menu"
 import Usuario from "../Usuario/Usuario"
+import {Link} from "react-router-dom"
 
 function Navbar() {
     return(
         <nav>
         <ul className="main-nav">
-            <Menu elemento='Admin'/>
-            <Menu elemento= 'Pages'/>
-            <Menu elemento= 'Charts'/>
-            <Menu elemento= 'Tables'/>
+            <Menu elemento='Home' ruta="/"/>
+            <Menu elemento= 'Login' ruta="/login"/>
+            <Menu elemento= 'Crear Cuenta' ruta="/crearcuenta"/>
+            <Menu elemento= 'Favoritos' ruta="/favoritos"/>
         </ul>
         <ul className="user">
-            <Usuario nombre= 'Walter White' foto="./img/user.jpg"/>
+            <Usuario nombre= 'Cine HUB' foto="logo.png"/>
         </ul>
         </nav>
     )
