@@ -10,7 +10,6 @@ import Favoritos from "./screens/Favoritos/Favoritos";
 import NotFound from "./screens/NotFound/NotFound";
 import ResultadosBusqueda from "./screens/ResultadosBusqueda/Resultados";
 import VerMas from "./screens/VerMas/VerMas";
-
 function App() {
   return (
     <>
@@ -24,6 +23,7 @@ function App() {
         <Route path="/resultadodebusqueda/:nombre" component={ResultadosBusqueda} />
         <Route path="*" component={NotFound} />
         <Route path="/vermas" component={VerMas} />
+      
       </Switch>
       <Footer />
     </>
