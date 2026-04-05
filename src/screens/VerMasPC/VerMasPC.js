@@ -1,19 +1,16 @@
 import React from 'react';
-import PPopulares from "../../components/PPopulares/PPopulares";
 import PCartel from "../../components/PCartel/PCartel";
 import SearchForm from "../../components/SearchForm/SearchForm";
 
-function Home() {
+function VerMasPC() {
   return (
     <>
         <h1>CINEPOLIS</h1>
         <SearchForm />
-        <h2>Peliculas mas populares</h2>        
-        <PPopulares />
-        <h2>Peliculas en cartel</h2>
+        <h2>Peliculas en Cartel</h2>        
         <PCartel />
     </>
   );
 }
 
-export default Home;
+export default VerMasPC;

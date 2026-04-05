@@ -9,7 +9,9 @@ import Detalle from "./screens/Detalle/Detalle";
 import Favoritos from "./screens/Favoritos/Favoritos";
 import NotFound from "./screens/NotFound/NotFound";
 import ResultadosBusqueda from "./screens/ResultadosBusqueda/Resultados";
-import VerMas from "./screens/VerMas/VerMas";
+import VerMasPP from "./screens/VerMasPP/VerMasPP";
+import VerMasPC from "./screens/VerMasPC/VerMasPC";
+
 function App() {
   return (
     <>
@@ -22,7 +24,9 @@ function App() {
         <Route path="/favoritos" component={Favoritos} />
         <Route path="/resultadodebusqueda/:nombre" component={ResultadosBusqueda} />
         <Route path="*" component={NotFound} />
-        <Route path="/vermas" component={VerMas} />
+        <Route path="/vermaspp" component={VerMasPP} />
+        <Route path="/vermaspc" component={VerMasPC} />
+
       
       </Switch>
       <Footer />

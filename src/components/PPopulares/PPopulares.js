@@ -8,6 +8,8 @@ class PPopulares extends Component {
         this.state={
             datos:[],
             textoABuscar:'',
+            pagina: 1,
+            cantidad: 4,
         } 
     }
     enviar(evento){
@@ -20,14 +22,15 @@ class PPopulares extends Component {
     }
     filtroP(textoAFiltrar){
         return this.state.datos.filter(Peli =>
-            Peli.title.toLowerCase().includes(textoAFiltrar.toLowerCase())
+            Peli && Peli.title && Peli.title.toLowerCase().includes(textoAFiltrar.toLowerCase())
         );
     }
     componentDidMount(){
 fetch(`https://api.themoviedb.org/3/movie/popular?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES&page=1`)
             .then (response=> response.json())
             .then (data => this.setState({
-                datos:data.results,
+                datos:data.results.slice(0,4),
+                pagina: 1,
                 }
             ))
             .catch(error => console.log(error));
@@ -38,13 +41,14 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=bbc2b643eedd50b8f9a23d
         });
     }
     masP(){
-        fetch(this.state.nextPage)
-        .then(response=>response.json())
-        .then(data=> this.setState({
-            datos: this.state.datos.concat(data.results),
-            nextPage: data.info.next
-        }))
-        .catch (error=> console.log(error));
+        let paginaS = this.state.pagina + 1
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES&page=${paginaS}`)
+            .then(response => response.json())
+            .then(data => this.setState({
+                datos: this.state.datos.concat(data.results.slice(0,4)),
+                pagina: paginaS
+            }))
+            .catch(error => console.log(error));
     }
     render(){
         return(

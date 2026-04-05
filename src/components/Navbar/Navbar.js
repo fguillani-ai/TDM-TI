@@ -12,7 +12,7 @@ function Navbar() {
             <Menu elemento= 'Favoritos' ruta="/favoritos"/>
         </ul>
         <ul className="user">
-            <Usuario nombre= 'Cine HUB' foto="logo.png"/>
+            <Usuario nombre= 'Cinepolis' foto="logo.png"/>
         </ul>
         </nav>
     )

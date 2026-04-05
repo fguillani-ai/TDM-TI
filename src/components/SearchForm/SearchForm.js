@@ -17,7 +17,7 @@ class SearchForm extends Component {
 
     enviarFormulario = (evento) => {
         evento.preventDefault();
-        this.props.history.push(`/searchresults/${this.state.textoBuscado}`);
+        this.props.history.push(`/resultadodebusqueda/${this.state.textoBuscado}`);
     }
 
     render() {

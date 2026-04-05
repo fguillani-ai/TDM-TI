@@ -1,52 +1,37 @@
 import React, { Component } from 'react';
 
-class Login extends Component {
+class CCuenta extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      error: '' 
+      email: "",
+      password: "",
+      error: "",
     };
   }
 
-  controlarCambiosEmail(event) {
+  CEmail(event){
     this.setState({ email: event.target.value });
   }
 
-  controlarCambiosPassword(event) {
+  CPassword(event){
     this.setState({ password: event.target.value });
   }
 
   evitarSubmit(event) {
     event.preventDefault();
 
-    let usuariosStorage = localStorage.getItem('usuarios');
-
-    if (usuariosStorage !== null) {
-      let usuariosRegistrados = JSON.parse(usuariosStorage);
-
-      let usuarioEncontrado = usuariosRegistrados.filter(
-        usuario => usuario.email === this.state.email
-      );
-
-      if (usuarioEncontrado.length > 0) {
-        if (usuarioEncontrado[0].password === this.state.password) {
-          localStorage.setItem('sesion', this.state.email);
-          this.setState({ error: '' });
-          
-          this.props.history.push('/');
-          return; 
-        }
-      }
+    if (this.state.password.length < 6) {
+      this.setState({ error: "La contraseña es incorrecta" });
+      return;
     }
-
-    this.setState({ error: 'Credenciales incorrectas' });
+    
+    this.props.history.push("/");
   }
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <h2>Login</h2>
         
         {this.state.error !== '' ? <p style={{ color: 'red' }}>{this.state.error}</p> : null}
@@ -56,7 +41,7 @@ class Login extends Component {
             <label>Email: </label>
             <input 
               type="email" 
-              onChange={(event) => this.controlarCambiosEmail(event)} 
+              onChange={(event) => this.CEmail(event)} 
               value={this.state.email} 
               required
             />
@@ -65,16 +50,16 @@ class Login extends Component {
             <label>Contraseña: </label>
             <input 
               type="password" 
-              onChange={(event) => this.controlarCambiosPassword(event)} 
+              onChange={(event) => this.CPassword(event)} 
               value={this.state.password} 
               required
             />
           </div>
-          <button type="submit">Ingresar</button>
+          <button type="submit">Iniciar Sesion</button>
         </form>
-      </React.Fragment>
+      </>
     );
   }
 }
 
-export default Login;
+export default CCuenta;

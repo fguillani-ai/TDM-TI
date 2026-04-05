@@ -10,11 +10,11 @@ class CCuenta extends Component {
     };
   }
 
-  controlarCambiosEmail(event){
+  CEmail(event){
     this.setState({ email: event.target.value });
   }
 
-  controlarCambiosPassword(event){
+  CPassword(event){
     this.setState({ password: event.target.value });
   }
 
@@ -26,39 +26,12 @@ class CCuenta extends Component {
       return;
     }
     
-    let usuariosStorage = localStorage.getItem("usuarios");
-    let usuariosRegistrados = [];
-
-    if (usuariosStorage !== null) {
-      usuariosRegistrados = JSON.parse(usuariosStorage);
-    }
-
-    let emailEnUso = usuariosRegistrados.filter(
-      usuario => usuario.email === this.state.email
-    );
-
-    if (emailEnUso.length > 0 ) {
-      this.setState({ error: "Este email ya esta registrado."});
-      return;
-    }
-
-    let nuevoUsuario = {
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    usuariosRegistrados.push(nuevoUsuario);
-    localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
-
-    localStorage.setItem("sesion", this.state.email);
-    this.setState({ error: "" });
-
     this.props.history.push("/");
   }
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <h2>Crear Cuenta</h2>
         
         {this.state.error !== '' ? <p style={{ color: 'red' }}>{this.state.error}</p> : null}
@@ -68,7 +41,7 @@ class CCuenta extends Component {
             <label>Email: </label>
             <input 
               type="email" 
-              onChange={(event) => this.controlarCambiosEmail(event)} 
+              onChange={(event) => this.CEmail(event)} 
               value={this.state.email} 
               required
             />
@@ -77,14 +50,14 @@ class CCuenta extends Component {
             <label>Contraseña: </label>
             <input 
               type="password" 
-              onChange={(event) => this.controlarCambiosPassword(event)} 
+              onChange={(event) => this.CPassword(event)} 
               value={this.state.password} 
               required
             />
           </div>
           <button type="submit">Registrarse</button>
         </form>
-      </React.Fragment>
+      </>
     );
   }
 }
