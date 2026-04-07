@@ -11,7 +11,7 @@ li {
 }
 a {
     text-decoration: none;
-    color: #000;
+    color: #ebe9e9;
 }
 body {
     font-family: Nunito;
@@ -26,7 +26,7 @@ nav{
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0 20px;
-    background-color: #4e73df;
+    background-color: #12204b;
     color: #fff
 }
 
@@ -104,7 +104,7 @@ main {
 .general-data .card {
     width: 32%;
     border-radius: 4px;
-    background-color: #36b9cc;
+    background-color: #2a5d64;
     margin-bottom: 10px;
     padding: 0 20px;
     color: #fff;

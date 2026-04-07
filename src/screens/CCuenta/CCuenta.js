@@ -26,6 +26,33 @@ class CCuenta extends Component {
       return;
     }
     
+    let usuariosStorage = localStorage.getItem("usuarios");
+    let usuariosRegistrados = [];
+
+    if (usuariosStorage !== null) {
+      usuariosRegistrados = JSON.parse(usuariosStorage);
+    }
+
+    let emailEnUso = usuariosRegistrados.filter(
+      usuario => usuario.email === this.state.email
+    );
+
+    if (emailEnUso.length > 0 ) {
+      this.setState({ error: "Este email ya esta registrado."});
+      return;
+    }
+
+    let nuevoUsuario = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    usuariosRegistrados.push(nuevoUsuario);
+    localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
+
+    localStorage.setItem("sesion", this.state.email);
+    this.setState({ error: "" });
+
     this.props.history.push("/");
   }
 

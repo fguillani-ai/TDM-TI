@@ -1,32 +1,46 @@
 import React, { Component } from 'react';
 
-class CCuenta extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      error: "",
+      email: '',
+      password: '',
+      error: '' 
     };
   }
 
-  CEmail(event){
+  CEmail(event) {
     this.setState({ email: event.target.value });
   }
 
-  CPassword(event){
+  CPassword(event) {
     this.setState({ password: event.target.value });
   }
 
   evitarSubmit(event) {
     event.preventDefault();
+    let usuariosStorage = localStorage.getItem('usuarios');
 
-    if (this.state.password.length < 6) {
-      this.setState({ error: "La contraseña es incorrecta" });
-      return;
+    if (usuariosStorage !== null) {
+      let usuariosRegistrados = JSON.parse(usuariosStorage);
+
+      let usuarioEncontrado = usuariosRegistrados.filter(
+        usuario => usuario.email === this.state.email
+      );
+
+      if (usuarioEncontrado.length > 0) {
+        if (usuarioEncontrado[0].password === this.state.password) {
+          localStorage.setItem('sesion', this.state.email);
+          this.setState({ error: '' });
+          
+          this.props.history.push('/');
+          return; 
+        }
+      }
     }
-    
-    this.props.history.push("/");
+
+    this.setState({ error: 'Credenciales incorrectas' });
   }
 
   render() {
@@ -55,11 +69,11 @@ class CCuenta extends Component {
               required
             />
           </div>
-          <button type="submit">Iniciar Sesion</button>
+          <button type="submit">Ingresar</button>
         </form>
       </>
     );
   }
 }
 
-export default CCuenta;
+export default Login;

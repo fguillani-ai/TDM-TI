@@ -1,6 +1,7 @@
 import Peli from "../Peli/Peli";
 import "./PPopulares.css"
 import { Component } from "react";
+import { Link } from "react-router-dom";
 
 class PPopulares extends Component {
     constructor(props) {
@@ -53,6 +54,8 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=bbc2b643eedd50b8f9a23d
     render(){
         return(
             <>
+                <button className= 'verMas'><Link to={`/vermaspp`}>Ver todas las peliculas populares</Link></button>
+                <p className='VerMas'><Link to={`/detalle/${this.props.id}`}>Ver detalle</Link></p>
                 <section className="cardContainer">
                     {this.state.datos.length === 0 ?
                     <h3>Cargando...</h3> : 

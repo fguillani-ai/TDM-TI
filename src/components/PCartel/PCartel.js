@@ -1,6 +1,8 @@
 import Peli from "../Peli/Peli";
 import "./PCartel.css"
 import { Component } from "react";
+import { Link } from "react-router-dom";
+
 
 class PCartel extends Component {
     constructor(props) {
@@ -54,6 +56,7 @@ fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=bbc2b643eedd50b8f9
     render(){
         return(
             <>
+                <button className= 'verMas'><Link to={`/vermaspc`}>Ver todas las peliculas del Cartel</Link></button>
                 <section className="cardContainer">
                     {this.state.datos.length === 0 ?
                     <h3>Cargando...</h3> : 
