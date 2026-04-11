@@ -21,10 +21,10 @@ class VerMasPP extends Component {
         });
     }
     filtroP(textoAFiltrar){
-        return this.state.datos.filter(Peli =>
-            Peli && Peli.title && Peli.title.toLowerCase().includes(textoAFiltrar.toLowerCase())
-        );
-    }
+      return this.state.datos.filter(pelicula =>
+          pelicula.title.toLowerCase().includes(textoAFiltrar.toLowerCase())
+      );
+  }
     componentDidMount(){
       fetch(`https://api.themoviedb.org/3/movie/popular?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES&page=1`)
             .then (response=> response.json())
