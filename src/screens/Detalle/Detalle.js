@@ -57,26 +57,28 @@ class Detalle extends Component {
 
     return (
       <>
-        <h1>CINE HUB</h1>
-        <img src={ `https://image.tmdb.org/t/p/w342${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />        
-        <h2>{this.state.pelicula.title}</h2>
-        <h4>Puntuación: {this.state.pelicula.vote_average} estrellas</h4>
-        <h4>Estreno: {this.state.pelicula.release_date}</h4>
-        <h4>Duración: {this.state.pelicula.runtime} minutos</h4>
-        <ul>
-          Géneros:
-          {this.state.pelicula.genres.map((genero, idx) => (
-            <li key={genero.name + idx}>{genero.name}</li>
-          ))}
-        </ul>
-
-        <p>{this.state.pelicula.overview}</p>
-
-        {haySesion ? (
-          <button onClick={() => this.agregarQuitarFavoritos(this.props.match.params.id)}>
-            {this.state.esFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos'}
-          </button>
-        ) : null}
+        <h1>UdeSA Movies</h1>
+        <h2 className='alert alert-primary' >{this.state.pelicula.title}</h2>
+        <section className='row'>
+          <img className='col-md-6' src={ `https://image.tmdb.org/t/p/w342${this.state.pelicula.poster_path}`} alt={this.state.pelicula.title} />
+          <section className='col-md-6 info'>
+            <h4 className='mt-0'>Puntuación: {this.state.pelicula.vote_average} estrellas</h4>
+            <h4 className='mt-0 mb-0'>Estreno: {this.state.pelicula.release_date}</h4>
+            <h4 className='mt-0 mb-0 length'>Duración: {this.state.pelicula.runtime} minutos</h4>
+            <ul>
+              Géneros:
+              {this.state.pelicula.genres.map((genero, idx) => (
+                <li key={genero.name + idx}>{genero.name}</li>
+              ))}
+            </ul>
+            <p className=''>{this.state.pelicula.overview}</p>
+            {haySesion ? (
+              <button className='btn alert-info' onClick={() => this.agregarQuitarFavoritos(this.props.match.params.id)}>
+                {this.state.esFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos ♥️'}
+              </button>
+            ) : null}
+          </section>       
+        </section>
       </>
     );
   }

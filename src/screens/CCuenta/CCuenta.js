@@ -50,40 +50,40 @@ class CCuenta extends Component {
     usuariosRegistrados.push(nuevoUsuario);
     localStorage.setItem("usuarios", JSON.stringify(usuariosRegistrados));
 
-    localStorage.setItem("sesion", this.state.email);
     this.setState({ error: "" });
 
-    this.props.history.push("/");
+    this.props.history.push("/login");
   }
 
   render() {
     return (
       <>
-        <h2>Crear Cuenta</h2>
+        <h2 className='alert alert-primary'>Crear Cuenta</h2>
         
         {this.state.error !== '' ? <p style={{ color: 'red' }}>{this.state.error}</p> : null}
-
-        <form onSubmit={(event) => this.evitarSubmit(event)}>
-          <div>
-            <label>Email: </label>
-            <input 
-              type="email" 
-              onChange={(event) => this.CEmail(event)} 
-              value={this.state.email} 
-              required
-            />
-          </div>
-          <div>
-            <label>Contraseña: </label>
-            <input 
-              type="password" 
-              onChange={(event) => this.CPassword(event)} 
-              value={this.state.password} 
-              required
-            />
-          </div>
-          <button type="submit">Registrarse</button>
-        </form>
+        <div className='row justify-content-center'>
+          <form onSubmit={(event) => this.evitarSubmit(event)}>
+            <div className='form-group'>
+              <label>Email: </label>
+              <input 
+                type="email" 
+                onChange={(event) => this.CEmail(event)} 
+                value={this.state.email} 
+                required
+              />
+            </div>
+            <div className='form-group'>
+              <label>Contraseña: </label>
+              <input 
+                type="password" 
+                onChange={(event) => this.CPassword(event)} 
+                value={this.state.password} 
+                required
+              />
+            </div>
+            <button className='btn btn-primary btn-block' type="submit">Registrarse</button>
+          </form>
+        </div>
       </>
     );
   }

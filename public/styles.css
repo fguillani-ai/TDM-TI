@@ -1,18 +1,20 @@
-/* Resets */
 *{
     box-sizing: border-box;
-    
 }
-ul,ol {
+
+ul, ol {
     padding: 0;
 }
+
 li {
-    list-style-type:none;
+    list-style-type: none;
 }
+
 a {
     text-decoration: none;
-    color: #ebe9e9;
+    color: inherit
 }
+
 body {
     font-family: Nunito;
     margin: 0;
@@ -20,14 +22,28 @@ body {
 }
 
 /* Navigation */
-nav{
+nav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0 20px;
     background-color: #12204b;
-    color: #fff
+    color: #fff;
+}
+
+nav {
+    margin: 0 !important;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    font-weight: bold;
+    color: burlywood;
 }
 
 nav ul {
@@ -50,13 +66,92 @@ nav ul {
     font-weight: bold;
 }
 
-.user img {
-    width: 30px;
-    border-radius: 90%;
-    margin-left: 10px;
+.search-form,
+.filter-form {
+    padding: .5rem 0;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    column-gap: 5px;
 }
 
-h1,h2 {
+.filter-form {
+    grid-template-columns: 1fr;
+}
+
+.search-form .btn-sm {
+    line-height: 1;
+    font-size: 0.9rem;
+}
+
+.search-form input,
+.filter-form input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: 1rem;
+}
+
+.filter-form input {
+    line-height: 1.5;
+}
+
+.cards {
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.cardBody {
+    margin-top: 20px;
+}
+
+.single-card-people {
+    width: 19%;
+}
+
+.single-card-movie {
+    width: 24%;
+}
+
+.single-card-playing {
+    width: 15%;
+}
+
+#now-playing .card-text {
+    height: 100px;
+    overflow: hidden;
+}
+
+.single-card-tv {
+    width: 19%;
+}
+
+.tv-show .card-text {
+    height: 100px;
+    overflow: hidden;
+}
+
+.single-card-on-air {
+    width: 15%;
+}
+
+#on-air-today .card-text {
+    height: 100px;
+    overflow: hidden;
+}
+
+.all-movies .single-card-movie {
+    width: 15%;
+}
+
+h1, h2 {
     font-weight: 400;
 }
 
@@ -73,6 +168,7 @@ main {
     justify-content: space-between;
     color: #666;
 }
+
 .data-detail {
     width: 32%;
     border-radius: 4px;
@@ -85,9 +181,11 @@ main {
     justify-content: space-between;
     align-items: center;
 }
+
 .data-detail p {
-    margin-top:0;
+    margin-top: 0;
 }
+
 .data-detail h4 {
     margin-bottom: 0;
 }
@@ -101,6 +199,7 @@ main {
     background-color: #fff;
     padding: 20px 20px 10px 20px;
 }
+
 .general-data .card {
     width: 32%;
     border-radius: 4px;

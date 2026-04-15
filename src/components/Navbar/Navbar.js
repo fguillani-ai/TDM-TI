@@ -4,26 +4,22 @@ import { Link } from "react-router-dom"
 import React from "react"
 
 function Navbar() {
-    let Sesion = localStorage.getItem('sesion') !== null;
+   
 
     return(
         <nav>
         <ul className="main-nav">
-            <Menu elemento='Home' ruta="/"/>
-            
-            {Sesion ? (
-                <Menu elemento='Favoritos' ruta="/favoritos"/>) : 
-             (
-                <React.Fragment>
-                    <Menu elemento='Login' ruta="/login"/>
-                    <Menu elemento='Crear Cuenta' ruta="/crearcuenta"/>
-                </React.Fragment>
-            )}
+            <Menu className='nav-item' elemento='Home' ruta="/"/>
+            <Menu className='nav-item' elemento='Peliculas Populares' ruta="/vermaspp"/>
+            <Menu className='nav-item' elemento='Peliculas en Cartel' ruta="/vermaspc"/>
+
         </ul>
         <ul className="user">
-            <Usuario nombre='Cinepolis' foto="logo.png"/>
+            <Usuario/>
         </ul>
         </nav>
     )
 }
 export default Navbar
+
+//componentDidUpdate

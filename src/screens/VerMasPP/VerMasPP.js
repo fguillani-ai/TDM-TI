@@ -10,6 +10,7 @@ class VerMasPP extends Component {
         this.state={
             datos:[],
             textoABuscar:'',
+            pagina: 1,
         } 
     }
     enviar(evento){
@@ -39,11 +40,20 @@ class VerMasPP extends Component {
             datos: this.state.datos.filter(p => p.id !== nombre)
         });
     }
+    masP(){
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES&page=${this.state.pagina + 1}`)
+            .then(response => response.json())
+            .then(data => this.setState({
+                datos: this.state.datos.concat(data.results),
+                pagina: this.state.pagina + 1,
+            }))
+            .catch(error => console.log(error));
+    }
     
     render(){
         return(
             <>
-                <h1>CINEPOLIS</h1>
+                <h1>UdeSA Movies</h1>
                 <SearchForm />
                 <h2>Peliculas mas populares</h2>
                 <p className='VerMas'><Link to={`/detalle/${this.props.id}`}>Ver detalle</Link></p>
@@ -62,6 +72,7 @@ class VerMasPP extends Component {
                         )
                     }
                 </section>
+                <button className= 'masP' onClick={()=>this.masP()}>Cargar mas peliculas</button>
             </>
         )
     }

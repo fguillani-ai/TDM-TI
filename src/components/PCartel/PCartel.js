@@ -42,22 +42,10 @@ fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=bbc2b643eedd50b8f9
             datos: this.state.datos.filter(p => p.id !== nombre)
         });
     }
-    masP(){
-        let paginaS = this.state.pagina + 1
-
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES&page=${paginaS}`)
-            .then(response => response.json())
-            .then(data => this.setState({
-                datos: this.state.datos.concat(data.results.slice(0,4)),
-                pagina: paginaS
-            }))
-            .catch(error => console.log(error));
-    }
     render(){
         return(
             <>
-                <button className= 'verMas'><Link to={`/vermaspc`}>Ver todas las peliculas del Cartel</Link></button>
-                <section className="cardContainer">
+                <section className="row cards all-movies">
                     {this.state.datos.length === 0 ?
                     <h3>Cargando...</h3> : 
                     this.filtroP(this.state.textoABuscar).map((dato,idx) => 
@@ -72,7 +60,7 @@ fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=bbc2b643eedd50b8f9
                         )
                     }
                 </section>
-                <button className= 'masP' onClick={()=>this.masP()}>Mas peliculas</button>
+                <button className= 'btn btn-info'><Link to={`/vermaspc`}>Ver todas las peliculas en cartel</Link></button>
             </>
         )
     }

@@ -22,14 +22,14 @@ class SearchForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.enviarFormulario}>
+            <form className='search-form' onSubmit={this.enviarFormulario}>
                 <input
                     type="text"
                     placeholder="Buscar personaje"
                     value={this.state.textoBuscado}
                     onChange={this.controlarInput}
                 />
-                <button type="submit">Buscar</button>
+                <button className='btn-success btn-sm' type="submit">Buscar</button>
             </form>
         );
     }
