@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Navbar from '../../components/Navbar/Navbar';
 
 class CCuenta extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class CCuenta extends Component {
   render() {
     return (
       <>
+        <Navbar />
         <h2 className='alert alert-primary'>Crear Cuenta</h2>
         
         {this.state.error !== '' ? <p style={{ color: 'red' }}>{this.state.error}</p> : null}

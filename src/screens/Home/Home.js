@@ -3,11 +3,12 @@ import PPopulares from "../../components/PPopulares/PPopulares";
 import PCartel from "../../components/PCartel/PCartel";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import Cookies from "universal-cookie";
-
+import Navbar from '../../components/Navbar/Navbar';
 
 function Home() {
   return (
     <>
+        <Navbar />
         <h1>UdeSA Movies</h1>
         <SearchForm />
         <h2 className='alert alert-primary'>Peliculas mas populares</h2>        

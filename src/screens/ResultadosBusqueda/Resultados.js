@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Peli from '../../components/Peli/Peli';
-
+import Navbar from '../../components/Navbar/Navbar';
 class ResultadosBusqueda extends Component {
   constructor(props){
     super(props);
@@ -21,6 +21,7 @@ class ResultadosBusqueda extends Component {
   render() {
     return (
       <>
+        <Navbar />
         <h1>Resultados de búsqueda</h1>
 
         {this.state.resultados.length === 0 ?

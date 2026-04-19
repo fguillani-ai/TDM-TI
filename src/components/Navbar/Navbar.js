@@ -5,7 +5,6 @@ import React from "react"
 
 function Navbar() {
    
-
     return(
         <nav>
         <ul className="main-nav">
@@ -21,5 +20,3 @@ function Navbar() {
     )
 }
 export default Navbar
-
-//componentDidUpdate

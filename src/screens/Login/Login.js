@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
-
+import Navbar from '../../components/Navbar/Navbar';
 const cookies = new Cookies()
 
 class Login extends Component {
@@ -53,6 +53,7 @@ class Login extends Component {
   render() {
     return (
       <>
+        <Navbar />
         <h2 className='alert alert-primary'>Login</h2>
         
         {this.state.error !== '' ? <p style={{ color: 'red' }}>{this.state.error}</p> : null}

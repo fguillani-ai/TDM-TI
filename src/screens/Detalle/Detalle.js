@@ -1,16 +1,23 @@
 import React, { Component } from "react";
+import Navbar from '../../components/Navbar/Navbar';
+import Cookies from 'universal-cookie';
+
+let cookie = new Cookies()
 
 class Detalle extends Component {
   constructor(props) {
     super(props);
     this.state = {
       pelicula: null,
-      esFavorito: false
+      esFavorito: false,
+      logueado:false,
     };
   }
 
   componentDidMount() {
     const id = this.props.match.params.id;
+    let usuario = cookie.get('sesion')
+    this.setState({ logueado: usuario ? true : false })
 
   fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES`)      
       .then(response => response.json())
@@ -53,10 +60,9 @@ class Detalle extends Component {
       return <h2>Cargando detalle...</h2>;
     }
 
-    let haySesion = localStorage.getItem('sesion') !== null;
-
     return (
       <>
+        <Navbar />
         <h1>UdeSA Movies</h1>
         <h2 className='alert alert-primary' >{this.state.pelicula.title}</h2>
         <section className='row'>
@@ -71,12 +77,9 @@ class Detalle extends Component {
                 <li key={genero.name + idx}>{genero.name}</li>
               ))}
             </ul>
-            <p className=''>{this.state.pelicula.overview}</p>
-            {haySesion ? (
-              <button className='btn alert-info' onClick={() => this.agregarQuitarFavoritos(this.props.match.params.id)}>
-                {this.state.esFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos ♥️'}
-              </button>
-            ) : null}
+            <p>{this.state.pelicula.overview}</p>
+             {this.state.logueado ? <button className='btn alert-info' onClick={() => this.agregarQuitarFavoritos(this.state.pelicula.id)}>
+                {this.state.esFavorito ? 'Quitar de favoritos' : 'Agregar a favoritos ♥️'}</button> : ''}
           </section>       
         </section>
       </>

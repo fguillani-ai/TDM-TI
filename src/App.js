@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import {Route, Switch} from 'react-router-dom';
 import Home from "./screens/Home/Home";
@@ -15,7 +14,6 @@ import VerMasPC from "./screens/VerMasPC/VerMasPC";
 function App() {
   return (
     <>
-      <Navbar />
       <Switch>
         <Route path="/" exact={true} component={Home} />
         <Route path="/crearcuenta" component={CCuenta} />

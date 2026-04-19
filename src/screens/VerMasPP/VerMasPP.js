@@ -2,7 +2,7 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import Peli from "../../components/Peli/Peli";
 import SearchForm from "../../components/SearchForm/SearchForm";
-
+import Navbar from '../../components/Navbar/Navbar';
 
 class VerMasPP extends Component {
     constructor(props) {
@@ -53,6 +53,7 @@ class VerMasPP extends Component {
     render(){
         return(
             <>
+                <Navbar />
                 <h1>UdeSA Movies</h1>
                 <SearchForm />
                 <h2>Peliculas mas populares</h2>

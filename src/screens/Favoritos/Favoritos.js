@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import Peli from '../../components/Peli/Peli';
+import Navbar from '../../components/Navbar/Navbar';
+import Cookies from 'universal-cookie';
+
+let cookie = new Cookies();
 
 class Favoritos extends Component {
   constructor(props) {
@@ -11,7 +15,7 @@ class Favoritos extends Component {
   }
 
   componentDidMount() {
-    let haySesion = localStorage.getItem('sesion');
+    let haySesion = cookie.get('sesion');
     
     if (haySesion === null) {
       this.props.history.push('/');
@@ -53,8 +57,9 @@ class Favoritos extends Component {
   render() {
     return (
       <>
+        <Navbar />
         <h2>Películas Favoritas</h2>
-        <section className="contenedor-peliculas">
+        <section className="row cards all-movies">
           {this.state.peliculasFavoritas.length > 0 ? (
             this.state.peliculasFavoritas.map((pelicula, idx) => (
               <Peli 
@@ -71,11 +76,6 @@ class Favoritos extends Component {
           ) : (
             <p> No tienes películas en favoritos. </p>
           )}
-        </section>
-
-        <h2>Series Favoritas</h2>
-        <section className="contenedor-peliculas">
-        <p> No tienes series en favoritos.</p>
         </section>
       </>
     );
