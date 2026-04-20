@@ -11,6 +11,7 @@ class Peli extends Component {
         this.state = {
             datos: '',
             logueado: false,
+            esFavorito: false,
         }
     }
 

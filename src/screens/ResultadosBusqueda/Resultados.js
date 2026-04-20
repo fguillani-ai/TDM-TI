@@ -27,7 +27,7 @@ class ResultadosBusqueda extends Component {
         {this.state.resultados.length === 0 ?
           <p>Cargando...</p>
         :
-          <section className="contenedor-peliculas">
+          <section className="row cards all-movies">
             {this.state.resultados.map((pelicula, idx) => (
               <Peli
                 key={pelicula.title + idx}
