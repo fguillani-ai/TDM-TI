@@ -17,6 +17,10 @@ class Peli extends Component {
 
     componentDidMount() {
         let usuario = cookie.get('sesion')
+        let id = this.props.id
+        let favoritosStorage = localStorage.getItem('favoritos');
+        let favoritosArray = favoritosStorage !== null ? JSON.parse(favoritosStorage) : [];
+        this.setState({esFavorito:favoritosArray.includes(id)? true : false})
         this.setState({ logueado: usuario ? true : false })
     }
 
@@ -44,7 +48,7 @@ class Peli extends Component {
     render() {
         return (
             <div className="single-card-movie">
-                <img className='card-img-top' src={`https://image.tmdb.org/t/p/w342${this.props.imagen}`} alt="{this.props.title}" />
+                <img className='card-img-top' src={`https://image.tmdb.org/t/p/w342${this.props.imagen}`} alt={this.props.title} />
                 <div className="cardBody">
                     <h2 className='card-title'>{this.props.title}</h2>
                     <p>{this.props.puntuacion}</p>

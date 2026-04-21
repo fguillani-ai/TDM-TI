@@ -10,9 +10,10 @@ class ResultadosBusqueda extends Component {
   }
 
   componentDidMount(){
+    const tipo = this.props.match.params.tipo;
     const textoBuscado = this.props.match.params.nombre;
 
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES&query=${textoBuscado}`)
+    fetch(`https://api.themoviedb.org/3/search/${tipo}?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES&query=${textoBuscado}`)
       .then(response => response.json())
       .then(data => this.setState({ resultados: data.results }))
       .catch(error => console.log(error));

@@ -20,7 +20,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/detalle/:id" component={Detalle} />
         <Route path="/favoritos" component={Favoritos} />
-        <Route path="/resultadodebusqueda/:nombre" component={ResultadosBusqueda} />
+        <Route path="/resultadodebusqueda/:tipo/:nombre" component={ResultadosBusqueda} />
         <Route path="/vermaspp" component={VerMasPP} />
         <Route path="/vermaspc" component={VerMasPC} />
         <Route path="*" component={NotFound} />

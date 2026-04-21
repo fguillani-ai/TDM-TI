@@ -10,45 +10,46 @@ class Favoritos extends Component {
     super(props);
     this.state = {
       peliculasFavoritas: [],
-      seriesFavoritas: []
+      seriesFavoritas: [],
+      cargadoPeliculas: false,
     };
   }
 
   componentDidMount() {
-    let haySesion = cookie.get('sesion');
-    
-    if (haySesion === null) {
-      this.props.history.push('/');
-      return;
+    let haySesion = cookie.get('user-auth-cookies');
+    let favParse = [];
+
+    if (haySesion !== null) {
+      let favoritosStorage = localStorage.getItem('favoritos');
+      favParse = favoritosStorage === null ? [] : JSON.parse(favoritosStorage);
     }
 
-    let favoritosStorage = localStorage.getItem('favoritos');
-    
-    if (favoritosStorage !== null) {
-      let favoritosArray = JSON.parse(favoritosStorage);
-      
-      favoritosArray.forEach(id => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES`)
-          .then(response => response.json())
-          .then(data => {
-            this.setState({
-              peliculasFavoritas: this.state.peliculasFavoritas.concat(data)
-            });
-          })
-          .catch(error => console.log(error));
+    if (favParse.length === 0) {
+      this.setState({
+        cargadoPeliculas: true,
       });
     }
+    favParse.map((id) => {
+      fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=bbc2b643eedd50b8f9a23d74f10b0d9e&language=es-ES`)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({
+            peliculasFavoritas: this.state.peliculasFavoritas.concat(data)
+          });
+        })
+        .catch(error => console.log(error));
+    });
   }
 
-  borrarFavorito(id) {
+  borrarFavorito(id){
     let favoritosStorage = localStorage.getItem('favoritos');
     let favoritosArray = JSON.parse(favoritosStorage);
-    
+
     let nuevosFavoritos = favoritosArray.filter(favId => favId !== id);
     localStorage.setItem('favoritos', JSON.stringify(nuevosFavoritos));
 
     let peliculasActualizadas = this.state.peliculasFavoritas.filter(pelicula => pelicula.id !== id);
-    
+
     this.setState({
       peliculasFavoritas: peliculasActualizadas
     });
@@ -74,7 +75,7 @@ class Favoritos extends Component {
               />
             ))
           ) : (
-            <p> No tienes películas en favoritos. </p>
+            <p>No tienes películas en favoritos.</p>
           )}
         </section>
       </>
