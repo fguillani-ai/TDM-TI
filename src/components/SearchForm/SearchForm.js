@@ -1,55 +1,45 @@
-import React, { Component } from "react";
+import { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 
-class SearchForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            textoBuscado: '',
-            tipo: 'movie',
-        };
+function SearchForm (props) {
+
+    const [textoBuscado, setTextoBuscado] = useState("")
+    const [tipo, setTipo] = useState('movie')
+
+    function controlarInput(evento){
+        setTextoBuscado(evento.target.value)
     }
 
-    controlarInput = (evento) => {
-        this.setState({
-            textoBuscado: evento.target.value
-        });
+    function controlarRadio(evento){
+        setTipo(evento.target.value)
     }
 
-    controlarRadio = (evento) => {
-        this.setState({
-            tipo: evento.target.value
-        });
-    }
-
-    enviarFormulario = (evento) => {
+    function enviarFormulario(evento){
         evento.preventDefault();
-        this.props.history.push(`/resultadodebusqueda/${this.state.tipo}/${this.state.textoBuscado}`);    }
 
-    render() {
-        return (
-            <form className='search-form' onSubmit={this.enviarFormulario}>
-                <input
-                    type="text"
-                    placeholder="Buscar personaje"
-                    value={this.state.textoBuscado}
-                    onChange={this.controlarInput}
-                />
-                <div className = 'radiob'>
-                    <label>
-                        <input type="radio" name="tipo" value="movie" checked={this.state.tipo === "movie"} onChange={this.controlarRadio}/>
-                        Películas
-                    </label>
-
-                    <label>
-                        <input type="radio" name="tipo" value="tv" checked={this.state.tipo === "tv"} onChange={this.controlarRadio}/>
-                        Series
-                    </label>
-                </div>
-                <button className='btn-success btn-sm' type="submit">Buscar</button>
-            </form>
+        props.history.push(
+            `/resultadodebusqueda/${tipo}/${textoBuscado}`
         );
     }
+
+    return (
+        <form className='search-form' onSubmit={enviarFormulario}>
+            <input type="text" placeholder="Buscar personaje" value={textoBuscado} onChange={controlarInput} />
+            <div className='radiob'>
+                <label>
+                    <input type="radio" name="tipo" value="movie" checked={tipo === "movie"} onChange={controlarRadio} />
+                    Películas
+                </label>
+                <label>
+                    <input type="radio" name="tipo" value="tv" checked={tipo === "tv"} onChange={controlarRadio} />
+                    Series
+                </label>
+            </div>
+            <button className='btn-success btn-sm' type="submit">
+                Buscar
+            </button>
+        </form>
+    );
 }
 
 export default withRouter(SearchForm);
